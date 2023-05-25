@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% block title %}Subscription Plans{% endblock %}
+{% block content %}
+<link href="https://js.stripe.com/v3/fingerprinted/css/pricing-table-app-4fc75153d61a2061007bbceefdc56ce0.css"
+  rel="stylesheet">
+<div class="py-8 px-4 mx-auto max-w-screen-x2 lg:py-16 lg:px-6">
+<div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+  <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Token Packs</h2>
+</div></div>
+<div
+  class="PricingTable is-fontFamily--Roboto is-whiteButtonText has-fourItems flex-container direction-column justify-content-center align-items-center"
+  data-testid="pricing-table-container" style="--pt-color-primary: #0074d4; background-color: rgb(31, 41, 55);">
+  <div class="IntervalTabs-refContainer"></div>
+  <div class="PricingTable-grid">
+    <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+      data-testid="price-column" style="--pt-animate-in-order: 0;">
+      <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+        <div class="PriceColumn-aboutProduct flex-container direction-column">
+          <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+          <div class="PriceColumn-textAndProductImage flex-container">
+            <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                class="PriceColumn-image"
+                src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/8254797014bc0cb7ddc44fdbfc1a8be2d3e84a1e8a21183af677f5fdc5d6e2ce/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666535649795557645851585a3661544a6b4f475670567a64785355704b4e57646c3030644d6d324174336a"
+                srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/8254797014bc0cb7ddc44fdbfc1a8be2d3e84a1e8a21183af677f5fdc5d6e2ce/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666535649795557645851585a3661544a6b4f475670567a64785355704b4e57646c3030644d6d324174336a, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/8254797014bc0cb7ddc44fdbfc1a8be2d3e84a1e8a21183af677f5fdc5d6e2ce/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666535649795557645851585a3661544a6b4f475670567a64785355704b4e57646c3030644d6d324174336a 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/8254797014bc0cb7ddc44fdbfc1a8be2d3e84a1e8a21183af677f5fdc5d6e2ce/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666535649795557645851585a3661544a6b4f475670567a64785355704b4e57646c3030644d6d324174336a 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/8254797014bc0cb7ddc44fdbfc1a8be2d3e84a1e8a21183af677f5fdc5d6e2ce/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666535649795557645851585a3661544a6b4f475670567a64785355704b4e57646c3030644d6d324174336a 4x"
+                alt="250 Tokens [Starter Pack]"></div>
+            <div class="PriceColumn-textContainerHeightAligner" style="height: 139px;">
+              <div class="PriceColumn-textContainer flex-container direction-column">
+                <div class="PriceColumn-name flex-container"><span
+                    class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">250 Tokens [Starter
+                    Pack]</span></div><span
+                  class="PriceColumn-description Text Text-color--default Text-fontSize--14">Please note that tokens are
+                  non-refundable and non-transferable. Tokens do not have an expiration date, and you can use them at
+                  any time.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PriceColumn-priceAndButton flex-container direction-column">
+          <div class="PriceColumn-priceContainerHeightAligner" style="height: 44px;">
+            <div class="PriceColumn-priceContainer">
+              <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                <div class="flex-container align-items-center"><span
+                    class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$4.99</span></span><span
+                    class="PriceColumn-interval Text Text-color--default Text-fontSize--13"></span></div>
+              </div>
+            </div>
+          </div><form method="post" action="{{url_for('stripe_view.create_payment_checkout')}}">
+            <input name="token" value="499" type="hidden">
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+            style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+            <div class="flex-container justify-content-center align-items-center"><span
+                class="Text Text-color--default Text-fontWeight--500 Text--truncate">Pay</span></div>
+          </button></form>
+        </div>
+      </div>
+      <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+          class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+        <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+          <div class="PriceColumn-feature flex-container align-items-flex-start">
+            <div class="PriceColumn-checkContainer flex-container"><svg
+                class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                <path
+                  d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                  fill-rule="evenodd"></path>
+              </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">250
+              Tokens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="PriceColumn is-highlight flex-container direction-column justify-content-flex-start align-items-center"
+      data-testid="price-column" style="--pt-animate-in-order: 1;">
+      <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+        <div class="PriceColumn-aboutProduct flex-container direction-column">
+          <div class="PriceColumn-badge flex-container">
+            <div class="Badge is-highlightBadge flex-container align-items-center"><span
+                class="Badge-text Text Text-color--default Text-fontSize--12 Text-fontWeight--500">Recommended</span>
+            </div>
+          </div>
+          <div class="PriceColumn-textAndProductImage flex-container">
+            <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                class="PriceColumn-image"
+                src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/99cb129191988055c06f44fb075613e9507af4d4927d8835084be5c9da506831/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665a464534616d56504d444e5862314275644442455932467552444e33546a524a30306435777661366c52"
+                srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/99cb129191988055c06f44fb075613e9507af4d4927d8835084be5c9da506831/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665a464534616d56504d444e5862314275644442455932467552444e33546a524a30306435777661366c52, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/99cb129191988055c06f44fb075613e9507af4d4927d8835084be5c9da506831/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665a464534616d56504d444e5862314275644442455932467552444e33546a524a30306435777661366c52 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/99cb129191988055c06f44fb075613e9507af4d4927d8835084be5c9da506831/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665a464534616d56504d444e5862314275644442455932467552444e33546a524a30306435777661366c52 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/99cb129191988055c06f44fb075613e9507af4d4927d8835084be5c9da506831/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665a464534616d56504d444e5862314275644442455932467552444e33546a524a30306435777661366c52 4x"
+                alt="1,200 Tokens [Basic Pack] (Save 20%)"></div>
+            <div class="PriceColumn-textContainerHeightAligner" style="height: 139px;">
+              <div class="PriceColumn-textContainer flex-container direction-column">
+                <div class="PriceColumn-name flex-container"><span
+                    class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">1,200 Tokens [Basic Pack]
+                    (Save 20%)</span></div><span
+                  class="PriceColumn-description Text Text-color--default Text-fontSize--14">Please note that tokens are
+                  non-refundable and non-transferable. Tokens do not have an expiration date, and you can use them at
+                  any time.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PriceColumn-priceAndButton flex-container direction-column">
+          <div class="PriceColumn-priceContainerHeightAligner" style="height: 44px;">
+            <div class="PriceColumn-priceContainer">
+              <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                <div class="flex-container align-items-center"><span
+                    class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$19.99</span></span><span
+                    class="PriceColumn-interval Text Text-color--default Text-fontSize--13"></span></div>
+              </div>
+            </div>
+          </div><form method="post" action="{{url_for('stripe_view.create_payment_checkout')}}">
+            <input name="token" value="1999" type="hidden">
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+            style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+            <div class="flex-container justify-content-center align-items-center"><span
+                class="Text Text-color--default Text-fontWeight--500 Text--truncate">Pay</span></div>
+          </button></form>
+        </div>
+      </div>
+      <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+          class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+        <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+          <div class="PriceColumn-feature flex-container align-items-flex-start">
+            <div class="PriceColumn-checkContainer flex-container"><svg
+                class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                <path
+                  d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                  fill-rule="evenodd"></path>
+              </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">1,200
+              Tokens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+      data-testid="price-column" style="--pt-animate-in-order: 2;">
+      <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+        <div class="PriceColumn-aboutProduct flex-container direction-column">
+          <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+          <div class="PriceColumn-textAndProductImage flex-container">
+            <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                class="PriceColumn-image"
+                src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/2d5c336a286b68480ca42ecf58879f8d0b407105262e70a090e1fd1b45ba1565/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566653565a5654324a7a546e5a53596d565054334279533052364d32686d646b6c68303074775a624c54754a"
+                srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/2d5c336a286b68480ca42ecf58879f8d0b407105262e70a090e1fd1b45ba1565/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566653565a5654324a7a546e5a53596d565054334279533052364d32686d646b6c68303074775a624c54754a, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/2d5c336a286b68480ca42ecf58879f8d0b407105262e70a090e1fd1b45ba1565/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566653565a5654324a7a546e5a53596d565054334279533052364d32686d646b6c68303074775a624c54754a 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/2d5c336a286b68480ca42ecf58879f8d0b407105262e70a090e1fd1b45ba1565/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566653565a5654324a7a546e5a53596d565054334279533052364d32686d646b6c68303074775a624c54754a 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/2d5c336a286b68480ca42ecf58879f8d0b407105262e70a090e1fd1b45ba1565/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566653565a5654324a7a546e5a53596d565054334279533052364d32686d646b6c68303074775a624c54754a 4x"
+                alt="3,500 Tokens [Pro Pack] (Save 28%)"></div>
+            <div class="PriceColumn-textContainerHeightAligner" style="height: 139px;">
+              <div class="PriceColumn-textContainer flex-container direction-column">
+                <div class="PriceColumn-name flex-container"><span
+                    class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">3,500 Tokens [Pro Pack]
+                    (Save 28%)</span></div><span
+                  class="PriceColumn-description Text Text-color--default Text-fontSize--14">Please note that tokens are
+                  non-refundable and non-transferable. Tokens do not have an expiration date, and you can use them at
+                  any time.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PriceColumn-priceAndButton flex-container direction-column">
+          <div class="PriceColumn-priceContainerHeightAligner" style="height: 44px;">
+            <div class="PriceColumn-priceContainer">
+              <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                <div class="flex-container align-items-center"><span
+                    class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$49.99</span></span><span
+                    class="PriceColumn-interval Text Text-color--default Text-fontSize--13"></span></div>
+              </div>
+            </div>
+          </div><form method="post" action="{{url_for('stripe_view.create_payment_checkout')}}">
+            <input name="token" value="4999" type="hidden">
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+            style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+            <div class="flex-container justify-content-center align-items-center"><span
+                class="Text Text-color--default Text-fontWeight--500 Text--truncate">Pay</span></div>
+          </button></form>
+        </div>
+      </div>
+      <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+          class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+        <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+          <div class="PriceColumn-feature flex-container align-items-flex-start">
+            <div class="PriceColumn-checkContainer flex-container"><svg
+                class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                <path
+                  d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                  fill-rule="evenodd"></path>
+              </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">3,500
+              Tokens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+      data-testid="price-column" style="--pt-animate-in-order: 3;">
+      <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+        <div class="PriceColumn-aboutProduct flex-container direction-column">
+          <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+          <div class="PriceColumn-textAndProductImage flex-container">
+            <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                class="PriceColumn-image"
+                src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/0c75e66d3246e36f259473e0cc93be0453fb16ada359c5c5622f3b5ba3a5ffc4/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665657356d5a33564e4d544d334e4752554d584a7056586c5a566d747a526d5a4b3030564e353870526748"
+                srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/0c75e66d3246e36f259473e0cc93be0453fb16ada359c5c5622f3b5ba3a5ffc4/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665657356d5a33564e4d544d334e4752554d584a7056586c5a566d747a526d5a4b3030564e353870526748, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/0c75e66d3246e36f259473e0cc93be0453fb16ada359c5c5622f3b5ba3a5ffc4/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665657356d5a33564e4d544d334e4752554d584a7056586c5a566d747a526d5a4b3030564e353870526748 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/0c75e66d3246e36f259473e0cc93be0453fb16ada359c5c5622f3b5ba3a5ffc4/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665657356d5a33564e4d544d334e4752554d584a7056586c5a566d747a526d5a4b3030564e353870526748 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/0c75e66d3246e36f259473e0cc93be0453fb16ada359c5c5622f3b5ba3a5ffc4/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56665657356d5a33564e4d544d334e4752554d584a7056586c5a566d747a526d5a4b3030564e353870526748 4x"
+                alt="8,000 Tokens [Ultimate Pack] (Save 38%)"></div>
+            <div class="PriceColumn-textContainerHeightAligner" style="height: 139px;">
+              <div class="PriceColumn-textContainer flex-container direction-column">
+                <div class="PriceColumn-name flex-container"><span
+                    class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">8,000 Tokens [Ultimate Pack]
+                    (Save 38%)</span></div><span
+                  class="PriceColumn-description Text Text-color--default Text-fontSize--14">Please note that tokens are
+                  non-refundable and non-transferable. Tokens do not have an expiration date, and you can use them at
+                  any time.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PriceColumn-priceAndButton flex-container direction-column">
+          <div class="PriceColumn-priceContainerHeightAligner" style="height: 44px;">
+            <div class="PriceColumn-priceContainer">
+              <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                <div class="flex-container align-items-center"><span
+                    class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$99.99</span></span><span
+                    class="PriceColumn-interval Text Text-color--default Text-fontSize--13"></span></div>
+              </div>
+            </div>
+          </div><form method="post" action="{{url_for('stripe_view.create_payment_checkout')}}">
+            <input name="token" value="9999" type="hidden">
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+            style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+            <div class="flex-container justify-content-center align-items-center"><span
+                class="Text Text-color--default Text-fontWeight--500 Text--truncate">Pay</span></div>
+          </button></form>
+        </div>
+      </div>
+      <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+          class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+        <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+          <div class="PriceColumn-feature flex-container align-items-flex-start">
+            <div class="PriceColumn-checkContainer flex-container"><svg
+                class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                <path
+                  d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                  fill-rule="evenodd"></path>
+              </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">8,000
+              Tokens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

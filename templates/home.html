@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<main class="relative py-16 bg-white dark:bg-gray-800">
+  <div class="bg-indigo-600">
+    <div class="flex items-center py-3 justify-center">
+      <div class="py-14 text-center px-5 sm:px-0">
+        <h2 class="text-3xl sm:text-4xl text-white font-extrabold tracking-tight">
+          <span class="block">Write your own novel with AING</span>
+        </h2>
+        <h2 class="text-gray-50 mt-5 tracking-wide text-sm sm:text-base">
+          <span class="block">Get inspired by our AI-powered generator and create your own masterpiece.</span>
+        </h2>
+        <div class="shadow inline-flex mt-5">
+          {% if current_user.is_authenticated%}
+          <a href="{{url_for('index')}}" class="inline-flex items-center py-3 justify-center bg-white hover:bg-indigo-200 px-4 py-3 border border-transparent rounded-md text-indigo-500 font-medium">Get started</a>
+          {%else%}
+          <a href="{{url_for('default_views.home',login='')}}" class="inline-flex items-center py-3 justify-center bg-white hover:bg-indigo-200 px-4 py-3 border border-transparent rounded-md text-indigo-500 font-medium">Get started</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid gap-12 grid-cols-1 md:grid-cols-2 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Benefits of using AING</h2>
+      <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Save time and effort in writing and editing
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Write in a wide range of genres and styles
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Generate unique and creative ideas for your story
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Collaborate with other writers and get feedback from our community
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Improve your writing skills with AING's advanced algorithm
+        </li>
+      </ul>
+    </div>
+    <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">How AING works</h2>
+      <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Choose your preferred genre and style
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Customize the plot, characters, and settings to your liking
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Click the "Generate" button to create your novel
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Edit and revise your story as needed
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Click the "Process Story" button for even more refinement
+        </li>
+        <li class="flex items-center py-3">
+          <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          Share your work with our community and get feedback
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,462 @@
+{% extends "base.html" %}
+{% block title %}Subscription Plans{% endblock %}
+{% block content %}
+<link href="https://js.stripe.com/v3/fingerprinted/css/pricing-table-app-4fc75153d61a2061007bbceefdc56ce0.css"
+  rel="stylesheet">
+<div class="py-8 px-4 mx-auto max-w-screen-x2 lg:py-16 lg:px-6">
+  <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Subscription Plans</h2>
+  </div>
+  <div
+    class="PricingTable is-fontFamily--Roboto is-whiteButtonText has-fourItems flex-container direction-column justify-content-center align-items-center"
+    style="--pt-color-primary: #0074d4; background-color: rgb(31, 41, 55);" data-testid="pricing-table-container">
+    <div class="IntervalTabs-refContainer"></div>
+    <div class="PricingTable-grid">
+      <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+        style="--pt-animate-in-order: 0;" data-testid="price-column">
+        <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+          <div class="PriceColumn-aboutProduct flex-container direction-column">
+            <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+            <div class="PriceColumn-textAndProductImage flex-container">
+              <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                  class="PriceColumn-image"
+                  src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/f113dfd5435e4e09a9971e950d82349125b9a58c8f366bd67fd25f7ff36bfccf/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6d786855576b324e6d4654625574775a6e413156464933633370304e6b52793030307446414f61316c"
+                  srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/f113dfd5435e4e09a9971e950d82349125b9a58c8f366bd67fd25f7ff36bfccf/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6d786855576b324e6d4654625574775a6e413156464933633370304e6b52793030307446414f61316c, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/f113dfd5435e4e09a9971e950d82349125b9a58c8f366bd67fd25f7ff36bfccf/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6d786855576b324e6d4654625574775a6e413156464933633370304e6b52793030307446414f61316c 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/f113dfd5435e4e09a9971e950d82349125b9a58c8f366bd67fd25f7ff36bfccf/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6d786855576b324e6d4654625574775a6e413156464933633370304e6b52793030307446414f61316c 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/f113dfd5435e4e09a9971e950d82349125b9a58c8f366bd67fd25f7ff36bfccf/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6d786855576b324e6d4654625574775a6e413156464933633370304e6b52793030307446414f61316c 4x"
+                  alt="Free Plan"></div>
+              <div class="PriceColumn-textContainerHeightAligner" style="height: 52px;">
+                <div class="PriceColumn-textContainer flex-container direction-column">
+                  <div class="PriceColumn-name flex-container"><span
+                      class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">Free Plan</span></div>
+                  <span class="PriceColumn-description Text Text-color--default Text-fontSize--14">Access to Chapter
+                    Agents</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="PriceColumn-priceAndButton flex-container direction-column">
+            <div class="PriceColumn-priceContainerHeightAligner" style="height: 42px;">
+              <div class="PriceColumn-priceContainer">
+                <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                  <div class="flex-container align-items-center"><span
+                      class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$0</span></span><span
+                      class="PriceColumn-interval Text Text-color--default Text-fontSize--13">per <br>month</span></div>
+                </div>
+              </div>
+            </div>
+            <form method="post" action="{{url_for('stripe_view.create_subscription_checkout')}}">
+              <input name="tier" value="FREE" type="hidden">
+              
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+              style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+              <div class="flex-container justify-content-center align-items-center"><span
+                  class="Text Text-color--default Text-fontWeight--500 Text--truncate">Subscribe</span></div>
+            </button></form>
+          </div>
+        </div>
+        <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+            class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+          <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Chapter
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">250 Free
+                Sign-up Tokens</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+        style="--pt-animate-in-order: 1;" data-testid="price-column">
+        <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+          <div class="PriceColumn-aboutProduct flex-container direction-column">
+            <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+            <div class="PriceColumn-textAndProductImage flex-container">
+              <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                  class="PriceColumn-image"
+                  src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/bc3f2dc0651ae371f07d602797a1d1cb92c0c30bf0ca11146c337670b597b3c9/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666516b3130553246455646524959544535655539305a4441775758705553485a6830305734664452314d54"
+                  srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/bc3f2dc0651ae371f07d602797a1d1cb92c0c30bf0ca11146c337670b597b3c9/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666516b3130553246455646524959544535655539305a4441775758705553485a6830305734664452314d54, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/bc3f2dc0651ae371f07d602797a1d1cb92c0c30bf0ca11146c337670b597b3c9/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666516b3130553246455646524959544535655539305a4441775758705553485a6830305734664452314d54 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/bc3f2dc0651ae371f07d602797a1d1cb92c0c30bf0ca11146c337670b597b3c9/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666516b3130553246455646524959544535655539305a4441775758705553485a6830305734664452314d54 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/bc3f2dc0651ae371f07d602797a1d1cb92c0c30bf0ca11146c337670b597b3c9/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d5666516b3130553246455646524959544535655539305a4441775758705553485a6830305734664452314d54 4x"
+                  alt="Basic Plan"></div>
+              <div class="PriceColumn-textContainerHeightAligner" style="height: 52px;">
+                <div class="PriceColumn-textContainer flex-container direction-column">
+                  <div class="PriceColumn-name flex-container"><span
+                      class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">Basic Plan</span></div>
+                  <span class="PriceColumn-description Text Text-color--default Text-fontSize--14">Access to basic AI
+                    algorithms.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="PriceColumn-priceAndButton flex-container direction-column">
+            <div class="PriceColumn-priceContainerHeightAligner" style="height: 42px;">
+              <div class="PriceColumn-priceContainer">
+                <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                  <div class="flex-container align-items-center"><span
+                      class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$9.99</span></span><span
+                      class="PriceColumn-interval Text Text-color--default Text-fontSize--13">per <br>month</span></div>
+                </div>
+              </div>
+            </div>
+            <form method="post" action="{{url_for('stripe_view.create_subscription_checkout')}}">
+              <input name="tier" value="BASIC" type="hidden">
+              
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+              style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+              <div class="flex-container justify-content-center align-items-center"><span
+                  class="Text Text-color--default Text-fontWeight--500 Text--truncate">Subscribe</span></div>
+            </button></form>
+          </div>
+        </div>
+        <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+            class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+          <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Chapter
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Gap
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Refinement
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Editing
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">700 Tokens
+                Each Month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="PriceColumn is-highlight flex-container direction-column justify-content-flex-start align-items-center"
+        style="--pt-animate-in-order: 2;" data-testid="price-column">
+        <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+          <div class="PriceColumn-aboutProduct flex-container direction-column">
+            <div class="PriceColumn-badge flex-container">
+              <div class="Badge is-highlightBadge flex-container align-items-center"><span
+                  class="Badge-text Text Text-color--default Text-fontSize--12 Text-fontWeight--500">Most popular</span>
+              </div>
+            </div>
+            <div class="PriceColumn-textAndProductImage flex-container">
+              <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                  class="PriceColumn-image"
+                  src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/0aeb6e6d72ca37a7c391acb9b9dd513999c9fc51b033a43f163efb19c9f2b1dd/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566661323973576c673453324e75627a4272576a4a4c54486c325745746d4d4574613030746156307452784d"
+                  srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/0aeb6e6d72ca37a7c391acb9b9dd513999c9fc51b033a43f163efb19c9f2b1dd/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566661323973576c673453324e75627a4272576a4a4c54486c325745746d4d4574613030746156307452784d, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/0aeb6e6d72ca37a7c391acb9b9dd513999c9fc51b033a43f163efb19c9f2b1dd/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566661323973576c673453324e75627a4272576a4a4c54486c325745746d4d4574613030746156307452784d 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/0aeb6e6d72ca37a7c391acb9b9dd513999c9fc51b033a43f163efb19c9f2b1dd/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566661323973576c673453324e75627a4272576a4a4c54486c325745746d4d4574613030746156307452784d 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/0aeb6e6d72ca37a7c391acb9b9dd513999c9fc51b033a43f163efb19c9f2b1dd/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d566661323973576c673453324e75627a4272576a4a4c54486c325745746d4d4574613030746156307452784d 4x"
+                  alt="Premium Plan"></div>
+              <div class="PriceColumn-textContainerHeightAligner" style="height: 52px;">
+                <div class="PriceColumn-textContainer flex-container direction-column">
+                  <div class="PriceColumn-name flex-container"><span
+                      class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">Premium Plan</span></div>
+                  <span class="PriceColumn-description Text Text-color--default Text-fontSize--14">Access to advanced AI
+                    algorithms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="PriceColumn-priceAndButton flex-container direction-column">
+            <div class="PriceColumn-priceContainerHeightAligner" style="height: 42px;">
+              <div class="PriceColumn-priceContainer">
+                <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                  <div class="flex-container align-items-center"><span
+                      class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$39.99</span></span><span
+                      class="PriceColumn-interval Text Text-color--default Text-fontSize--13">per <br>month</span></div>
+                </div>
+              </div>
+            </div>
+            <form method="post" action="{{url_for('stripe_view.create_subscription_checkout')}}">
+              <input name="tier" value="PREMIUM" type="hidden">
+              
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+              style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+              <div class="flex-container justify-content-center align-items-center"><span
+                  class="Text Text-color--default Text-fontWeight--500 Text--truncate">Subscribe</span></div>
+            </button></form>
+          </div>
+        </div>
+        <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+            class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+          <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Chapter
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14"> Gap
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Refinement
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Editing
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">The 3-Act
+                Structure</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Set-up and
+                Payoff Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">1,200
+                Tokens Each Month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="PriceColumn flex-container direction-column justify-content-flex-start align-items-center"
+        style="--pt-animate-in-order: 3;" data-testid="price-column">
+        <div class="PriceColumn-content flex-container direction-column justify-content-flex-start align-items-center">
+          <div class="PriceColumn-aboutProduct flex-container direction-column">
+            <div class="PriceColumn-badge is-placeholderForHeight flex-container"></div>
+            <div class="PriceColumn-textAndProductImage flex-container">
+              <div class="PriceColumn-imageContainer flex-container justify-content-flex-start"><img
+                  class="PriceColumn-image"
+                  src="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/9e7a2b99dbf5dfb7436ae601789eaad93cf8603c25852d751e0c25d0fdce6597/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6b3835574656485533417a576b78475a6c4a435457683261554a61536b553130307355476736474974"
+                  srcset="https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=1/https://d1wqzb5bdbcre6.cloudfront.net/9e7a2b99dbf5dfb7436ae601789eaad93cf8603c25852d751e0c25d0fdce6597/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6b3835574656485533417a576b78475a6c4a435457683261554a61536b553130307355476736474974, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=2/https://d1wqzb5bdbcre6.cloudfront.net/9e7a2b99dbf5dfb7436ae601789eaad93cf8603c25852d751e0c25d0fdce6597/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6b3835574656485533417a576b78475a6c4a435457683261554a61536b553130307355476736474974 2x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=3/https://d1wqzb5bdbcre6.cloudfront.net/9e7a2b99dbf5dfb7436ae601789eaad93cf8603c25852d751e0c25d0fdce6597/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6b3835574656485533417a576b78475a6c4a435457683261554a61536b553130307355476736474974 3x, https://img.stripecdn.com/cdn-cgi/image/format=auto,height=120,dpr=4/https://d1wqzb5bdbcre6.cloudfront.net/9e7a2b99dbf5dfb7436ae601789eaad93cf8603c25852d751e0c25d0fdce6597/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a6446387854575930525764424d31426c626b347a5a7a524366475a7358327870646d56664d6b3835574656485533417a576b78475a6c4a435457683261554a61536b553130307355476736474974 4x"
+                  alt="Enterprise Plan"></div>
+              <div class="PriceColumn-textContainerHeightAligner" style="height: 52px;">
+                <div class="PriceColumn-textContainer flex-container direction-column">
+                  <div class="PriceColumn-name flex-container"><span
+                      class="Text Text-color--default Text-fontSize--20 Text-fontWeight--600">Enterprise Plan</span>
+                  </div><span class="PriceColumn-description Text Text-color--default Text-fontSize--14">Access to all
+                    AI algorithms.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="PriceColumn-priceAndButton flex-container direction-column">
+            <div class="PriceColumn-priceContainerHeightAligner" style="height: 42px;">
+              <div class="PriceColumn-priceContainer">
+                <div class="flex-container spacing-4 direction-column align-items-flex-start">
+                  <div class="flex-container align-items-center"><span
+                      class="PriceColumn-price Text Text-color--default Text-fontSize--36 Text-fontWeight--700"><span>$149.99</span></span><span
+                      class="PriceColumn-interval Text Text-color--default Text-fontSize--13">per <br>month</span></div>
+                </div>
+              </div>
+            </div>
+            <form method="post" action="{{url_for('stripe_view.create_subscription_checkout')}}">
+              <input name="tier" value="ENTERPRISE" type="hidden">
+              
+            <button class="Button PriceColumn-button Button--primary Button--lg" type="submit"
+              style="background-color: rgb(0, 116, 212); border-color: rgb(0, 116, 212);">
+              <div class="flex-container justify-content-center align-items-center"><span
+                  class="Text Text-color--default Text-fontWeight--500 Text--truncate">Subscribe</span></div>
+            </button></form>
+          </div>
+        </div>
+        <div class="PriceColumn-featureListContainer flex-container direction-column"><span
+            class="PriceColumn-featureListHeader Text Text-color--default Text-fontSize--14">This includes:</span>
+          <div class="PriceColumn-featureList flex-container direction-column align-items-flex-start">
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Chapter
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14"> Gap
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Refinement
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Editing
+                Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">The 3-Act
+                Structure</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Set-up and
+                Payoff Agents</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span
+                class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Humanisation Agent</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Story
+                Circle Framework</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">Iceberg
+                Method to Worldbuilding</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">24/7
+                support</span>
+            </div>
+            <div class="PriceColumn-feature flex-container align-items-flex-start">
+              <div class="PriceColumn-checkContainer flex-container"><svg
+                  class="InlineSVG Icon PriceColumn-check Icon--sm" focusable="false" fill="#ffffff" color="#ffffff"
+                  fill-opacity="0.7" height="16" viewBox="0 0 16 16" width="16">
+                  <path
+                    d="m8 16c-4.418278 0-8-3.581722-8-8s3.581722-8 8-8 8 3.581722 8 8-3.581722 8-8 8zm3.0832728-11.00479172-4.0832728 4.09057816-1.79289322-1.79289322c-.39052429-.39052429-1.02368927-.39052429-1.41421356 0s-.39052429 1.02368927 0 1.41421356l2.5 2.50000002c.39052429.3905243 1.02368927.3905243 1.41421356 0l4.79037962-4.79768495c.3905243-.3905243.3905243-1.02368927 0-1.41421357-.3905243-.39052429-1.0236893-.39052429-1.4142136 0z"
+                    fill-rule="evenodd"></path>
+                </svg></div><span class="PriceColumn-featureText Text Text-color--default Text-fontSize--14">5,500
+                Tokens Each Month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

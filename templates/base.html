@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="dark">
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% block links %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{ url_for('static', filename='assets/Logo.png') }}" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              "50": "#eff6ff",
+              "100": "#dbeafe",
+              "200": "#bfdbfe",
+              "300": "#93c5fd",
+              "400": "#60a5fa",
+              "500": "#3b82f6",
+              "600": "#2563eb",
+              "700": "#1d4ed8",
+              "800": "#1e40af",
+              "900": "#1e3a8a"
+            }
+          }
+        },
+      }
+    }
+
+  </script>
+  <style>
+    #navbar-default > ul > li {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+  <script
+    id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/963d561aedeeb60a911d93643/b90879bd67f47fca35789dddf.js");</script>
+  <script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBspkZ_pO0ou4mxRp_GdOPmRSS5RqJvxQg",
+      authDomain: "aing-384818.firebaseapp.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- Matomo Tag Manager -->
+  <script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://stats.ainovelgenerator.net/js/container_rjuzK7BH.js';
+  s.parentNode.insertBefore(g,s);
+  </script>
+  <!-- End Matomo Tag Manager -->
+
+  <!-- Matomo Tag Manager -->
+<script>
+var _mtm = window._mtm = window._mtm || [];
+_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+g.async=true; g.src='https://stats.ainovelgenerator.net/js/container_guINJYhc.js';
+s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+
+<!-- Matomo Tag Manager -->
+<script>
+var _mtm = window._mtm = window._mtm || [];
+_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+g.async=true; g.src='https://stats.ainovelgenerator.net/js/container_FxIXEbCA.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11179219570"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11179219570');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8H2V8D3KG">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y8H2V8D3KG');
+</script>
+</head>
+
+<body class="dark:bg-gray-900">
+  {% set activeNavLink = "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0
+  dark:text-white md:dark:text-blue-500" %}
+  {% set NavLink = "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0
+  md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white
+  md:dark:hover:bg-transparent" %}
+  {% set cardTitle = "mb-4 text-2xl font-semibold"%}
+  {% set greenIcon = "flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" %}
+  <nav class="border-gray-200 dark:bg-gray-900">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="{{ url_for('default_views.home') }}" class="flex items-center">
+        <img src="{{ url_for('static', filename='assets/Logo.png') }}" class="h-10 mr-3" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AING</span>
+      </a>
+      <button type="button"
+        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul
+          class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="{{ url_for('default_views.home') }}"
+              class="{% if request.path == url_for('default_views.home') %}{{activeNavLink}}{% else %} {{NavLink}}{% endif %}">Home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('default_views.features') }}"
+              class="{% if request.path == url_for('default_views.features') %}{{activeNavLink}}{% else %} {{NavLink}}{% endif %}">Features</a>
+          </li>
+          <li>
+            <a href="{{ url_for('default_views.plans') }}"
+              class="{% if request.path == url_for('default_views.plans') %}{{activeNavLink}}{% else %} {{NavLink}}{% endif %}">Plans</a>
+          </li>
+          <li>
+            <a href="{{ url_for('index') }}"
+              class="{% if request.path == url_for('index') %}{{activeNavLink}}{% else %} {{NavLink}}{% endif %}">Generator</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{  url_for('default_views.tokens') }}"
+              class="flex flex-col px-3 h-10 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <img class="object-cover w-6 mr-2" src="{{ url_for('static', filename='assets/token.png') }}" alt="">
+              <div class="flex justify-between leading-normal">
+                <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Tokens: &nbsp;<span
+                    class="font-normal text-gray-700 dark:text-gray-400">0</span></h5>
+
+              </div>
+
+            </a>
+          </li>
+          <li class="relative">
+            <button onclick="showProfile()"
+              class="flex items-center text-sm font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+              type="button" >
+              <img class="w-8 h-8 mr-2 rounded-full" src="{{url_for('static', filename='assets/avatar.png')}}" alt="user photo">
+              <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div id="profileDropdown"
+              class="z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600" style="position: absolute; top:44px !important; left: -50px !important;">
+              <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+
+                <div class="font-medium ">{{current_user.tier}} Tier</div>
+                <div class="truncate">{{current_user.email}}</div>
+              </div>
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Top up</a>
+                </li>
+                <li>
+
+                  <form method="POST" action="{{url_for('stripe_view.customer_portal')}}">
+                  <!-- <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">History</a> -->
+                      <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" type="submit">Manage billing</button>
+                    </form>
+
+                </li>
+                <li>
+                  <a href="#"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Published books</a>
+                </li>
+              </ul>
+              <div class="py-2">
+                <a href="{{url_for('auth.logout')}}"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                  out</a>
+              </div>
+            </div>
+          </li>
+
+          {%else%}
+          <li>
+            <a onclick="loginModal()" href="#"
+              class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</a>
+          </li>
+          <li>
+            <a onclick="signupModal()" href="#"
+              class="text-white border bg-gradient-to-br hover:from-cyan-500 hover:to-blue-500 border-cyan-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="dark:bg-gray-800">
+    {% block content %}{% endblock %}
+  </section>
+  <div id="modal" tabindex="-1"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full justify-center overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full"
+    style="background-color: #000000a3;">
+
+  </div>
+  <footer class="shadow dark:bg-gray-900">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="/" class="flex items-center mb-4 sm:mb-0">
+          <img src="{{ url_for('static', filename='assets/Logo.png') }}" class="h-10 mr-3" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AING</span>
+        </a>
+        <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+          <li>
+            <a href="{{ url_for('default_views.about') }}" class="mr-4 hover:underline md:mr-6 ">About</a>
+          </li>
+          <li>
+            <a href="{{ url_for('default_views.privacy_policy') }}" class="mr-4 hover:underline md:mr-6">Privacy
+              Policy</a>
+          </li>
+          <li>
+            <a href="{{ url_for('default_views.licensing_agreement') }}"
+              class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+          </li>
+          <li>
+            <a href="{{ url_for('default_views.contact') }}" class="hover:underline">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/"
+          class="hover:underline">AING™</a>. All Rights Reserved.</span>
+    </div>
+  </footer>
+  <script src="{{ url_for('static', filename='js/authScript.js') }}"></script>
+</body>
+</html>

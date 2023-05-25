@@ -1,0 +1,12 @@
+
+{
+  "hosting": {
+    "site": "aing-live",
+    "public": "templates",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

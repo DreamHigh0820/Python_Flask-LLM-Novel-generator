@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}AING - Generator{% endblock %}
+{% block links %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> -->
+<link rel="icon" href="{{ url_for('static', filename='assets/Logo.png') }}" type="image/png">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<!-- <script src="https://unpkg.com/pdf-lib-standard-fonts@1.0.0/dist/pdf-lib-standard-fonts.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/ii3675+z8X5W5/zXpbD6tkr5z/5x6l7xuhraJ07" crossorigin="anonymous">
+<style>
+  .ql-save i {
+    color: white;
+  }
+
+  .ql-toolbar .ql-undo,
+  .ql-toolbar .ql-redo,
+  .ql-toolbar .ql-save {
+    float: right !important;
+    margin-right: 10px;
+  }
+  .ql-toolbar {
+    background: white;
+    border-radius: 8px 8px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="grid grid-cols-12 pt-4">
+  <div class="col-span-2 p-4">
+    <form id="settings-form">
+      <div class="mb-6">
+        <label for="api-key" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">API Key</label>
+        <input type="text" id="api-key"
+          class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+      <button type="submit"
+        class="w-full text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-6">Save</button>
+      <div class="mb-6">
+        <label for="api-key" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Temperature: <span
+            class="bg-green-100 text-green-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+            id="temperature-value">0.7</span></label>
+        {{ form.temperature(class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer
+        dark:bg-gray-700",step="0.1") }}
+      </div>
+      <div class="mb-6">
+        <label for="api-key" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Setting / Story
+          Locations</label>
+        {{ form.setting(class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs
+        focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500") }}
+      </div>
+    </form>
+    <button type="button" id="slideBtn" onclick="shSlide()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 block w-full">Show Acts</button>
+  </div>
+  <div class="col-span-8 bg-gray-700 overflow-auto">
+    <div id="generated-text" class="text-lg text-gray-300 font-semibold"></div>
+  </div>
+  <div class="col-span-2 p-4">
+    <form id="story-form">
+      <div class="mb-6">
+        <label for="title" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Title</label>
+        <input type="text" id="title"
+          class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+      <div class="mb-6">
+        <label for="genre" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Genre</label>
+        <input type="text" id="genre"
+          class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+      <div class="mb-6">
+        <label for="characters" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Main
+          Characters</label>
+        <input type="text" id="characters"
+          class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+      <div class="mb-6">
+        <label for="plot" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Plot Summary</label>
+        <textarea id="plot" rows="4"
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+      </div>
+      <div class="mb-6">
+        <label for="prompt" class="mb-4 block text-md font-bold tracking-tight text-gray-900 dark:text-white">Prompt Input</label>
+        <textarea id="prompt" rows="4"
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+      </div>
+      <button class="w-full text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-6" type="submit">Generate Text</button>
+      <button id="process" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 block w-full">Process Story</button>
+    </form><br>
+  </div>
+</div>
+<div id="slideContainer" class="relative overflow-hidden h-4 transform duration-300 top-0 h-0">
+<div id="slide" class="mt-4 absolute transform duration-300 top-0 grid grid-cols-12 gap-4 mx-4 pb-4">
+  <div class="grid gird-cols-12 col-span-3 bg-gray-600 gap-4 p-2 rounded-lg shadow-lg border-gray-500 border-2">
+    <div class="col-span-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Act 1</div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt1" name="prompt1" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt1">Chapter 1</label>
+    </div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt2" name="prompt2" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt2">Chapter 2</label>
+    </div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt3" name="prompt3" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt3">Chapter 3</label>
+    </div>
+
+  </div>
+  <div class="grid gird-cols-12 col-span-6 bg-gray-600 gap-4 p-2 rounded-lg shadow-lg border-gray-500 border-2">
+    <div class="col-span-12 text-center  mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Act 2</div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt4" name="prompt4" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt4">Chapter 4</label>
+    </div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt5" name="prompt5" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt5">Chapter 5</label>
+    </div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt6" name="prompt6" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt6">Chapter 6</label>
+    </div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt7" name="prompt7" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt7">Chapter 7</label>
+    </div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt8" name="prompt8" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt8">Chapter 8</label>
+    </div>
+    <div class="col-span-2">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt9" name="prompt9" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt9">Chapter 9</label>
+    </div>
+  </div>
+  <div class="grid gird-cols-12 col-span-3 bg-gray-600 gap-4 p-2 rounded-lg shadow-lg border-gray-500 border-2">
+    <div class="col-span-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Act 3</div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt10" name="prompt10" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt10">Chapter 10</label>
+    </div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt11" name="prompt11" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt11">Chapter 11</label>
+    </div>
+    <div class="col-span-4">
+      <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-32" id="prompt12" name="prompt12" required></textarea>
+      <label class="text-center my-2 text-md font-bold tracking-tight text-gray-900 dark:text-white block" for="prompt12">Chapter 12</label>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+
+  const slideBtn = document.getElementById("slideBtn");
+  const slide = document.getElementById("slide");
+  const slideContainer = document.getElementById("slideContainer");
+  let shown = false
+  function shSlide(){
+    let height = (slide.offsetHeight+16)
+    if(!shown){
+      slide.classList.remove('top-0')
+      slide.classList.add('top-[-'+height+'px]')
+      slideBtn.innerText = "Hide Acts"
+      slideContainer.classList.remove('overflow-hidden')
+      shown=true
+    }
+    else{
+      slide.classList.remove('top-[-'+height+'px]')
+      slide.classList.add('top-0')
+      slideBtn.innerText = "Show Acts"
+      slideContainer.classList.add('overflow-hidden')
+      shown = false
+    }
+  }
+
+</script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quill.js') }}"></script>
+{% endblock %}
